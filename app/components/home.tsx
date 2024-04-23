@@ -138,11 +138,18 @@ function Screen() {
 
   return (
     <div
+      // className={
+      //   styles.container +
+      //   ` ${shouldTightBorder ? styles["tight-container"] : styles.container} ${
+      //     getLang() === "ar" ? styles["rtl-screen"] : ""
+      //   }`
+      // }
+      //   因为语言选项去除了阿拉伯文字所以需要改这里
       className={
         styles.container +
-        ` ${shouldTightBorder ? styles["tight-container"] : styles.container} ${
-          getLang() === "ar" ? styles["rtl-screen"] : ""
-        }`
+        ` ${
+          shouldTightBorder ? styles["tight-container"] : styles.container
+        } ${""}`
       }
     >
       {isAuth ? (

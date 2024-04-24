@@ -814,21 +814,22 @@ export function Settings() {
             ></input>
           </ListItem>
 
-          <ListItem
-            title={Locale.Settings.SendPreviewBubble.Title}
-            subTitle={Locale.Settings.SendPreviewBubble.SubTitle}
-          >
-            <input
-              type="checkbox"
-              checked={config.sendPreviewBubble}
-              onChange={(e) =>
-                updateConfig(
-                  (config) =>
-                    (config.sendPreviewBubble = e.currentTarget.checked),
-                )
-              }
-            ></input>
-          </ListItem>
+          {/*禁用预览气泡的选项*/}
+          {/*<ListItem*/}
+          {/*  title={Locale.Settings.SendPreviewBubble.Title}*/}
+          {/*  subTitle={Locale.Settings.SendPreviewBubble.SubTitle}*/}
+          {/*>*/}
+          {/*  <input*/}
+          {/*    type="checkbox"*/}
+          {/*    checked={config.sendPreviewBubble}*/}
+          {/*    onChange={(e) =>*/}
+          {/*      updateConfig(*/}
+          {/*        (config) =>*/}
+          {/*          (config.sendPreviewBubble = e.currentTarget.checked),*/}
+          {/*      )*/}
+          {/*    }*/}
+          {/*  ></input>*/}
+          {/*</ListItem>*/}
         </List>
 
         {/*禁用云端同步功能*/}

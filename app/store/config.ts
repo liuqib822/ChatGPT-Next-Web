@@ -32,8 +32,11 @@ export const DEFAULT_CONFIG = {
   avatar: "1f603",
   fontSize: 14,
   theme: Theme.Auto as Theme,
-  tightBorder: !!getClientConfig()?.isApp,
-  sendPreviewBubble: true,
+  // tightBorder: !!getClientConfig()?.isApp,
+  // 初始化就填满空间
+  tightBorder: false,
+  // 禁用预览气泡，优化性能
+  sendPreviewBubble: false,
   enableAutoGenerateTitle: true,
   sidebarWidth: DEFAULT_SIDEBAR_WIDTH,
 

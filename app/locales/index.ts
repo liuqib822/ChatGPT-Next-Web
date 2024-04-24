@@ -96,11 +96,13 @@ function setItem(key: string, value: string) {
 }
 
 function getLanguage() {
-  try {
-    return navigator.language.toLowerCase();
-  } catch {
-    return DEFAULT_LANG;
-  }
+  // 直接返回中文
+  return DEFAULT_LANG;
+  // try {
+  //   return navigator.language.toLowerCase();
+  // } catch {
+  //   return DEFAULT_LANG;
+  // }
 }
 
 export function getLang(): Lang {

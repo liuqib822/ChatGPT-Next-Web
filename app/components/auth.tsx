@@ -50,33 +50,35 @@ export function AuthPage() {
           );
         }}
       />
-      {!accessStore.hideUserApiKey ? (
-        <>
-          <div className={styles["auth-tips"]}>{Locale.Auth.SubTips}</div>
-          <input
-            className={styles["auth-input"]}
-            type="password"
-            placeholder={Locale.Settings.Access.OpenAI.ApiKey.Placeholder}
-            value={accessStore.openaiApiKey}
-            onChange={(e) => {
-              accessStore.update(
-                (access) => (access.openaiApiKey = e.currentTarget.value),
-              );
-            }}
-          />
-          <input
-            className={styles["auth-input"]}
-            type="password"
-            placeholder={Locale.Settings.Access.Google.ApiKey.Placeholder}
-            value={accessStore.googleApiKey}
-            onChange={(e) => {
-              accessStore.update(
-                (access) => (access.googleApiKey = e.currentTarget.value),
-              );
-            }}
-          />
-        </>
-      ) : null}
+
+      {/*禁用用户直接输入api key  */}
+      {/*{!accessStore.hideUserApiKey ? (*/}
+      {/*  <>*/}
+      {/*    <div className={styles["auth-tips"]}>{Locale.Auth.SubTips}</div>*/}
+      {/*    <input*/}
+      {/*      className={styles["auth-input"]}*/}
+      {/*      type="password"*/}
+      {/*      placeholder={Locale.Settings.Access.OpenAI.ApiKey.Placeholder}*/}
+      {/*      value={accessStore.openaiApiKey}*/}
+      {/*      onChange={(e) => {*/}
+      {/*        accessStore.update(*/}
+      {/*          (access) => (access.openaiApiKey = e.currentTarget.value),*/}
+      {/*        );*/}
+      {/*      }}*/}
+      {/*    />*/}
+      {/*    <input*/}
+      {/*      className={styles["auth-input"]}*/}
+      {/*      type="password"*/}
+      {/*      placeholder={Locale.Settings.Access.Google.ApiKey.Placeholder}*/}
+      {/*      value={accessStore.googleApiKey}*/}
+      {/*      onChange={(e) => {*/}
+      {/*        accessStore.update(*/}
+      {/*          (access) => (access.googleApiKey = e.currentTarget.value),*/}
+      {/*        );*/}
+      {/*      }}*/}
+      {/*    />*/}
+      {/*  </>*/}
+      {/*) : null}*/}
 
       <div className={styles["auth-actions"]}>
         <IconButton

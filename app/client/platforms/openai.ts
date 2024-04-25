@@ -141,6 +141,7 @@ export class ChatGPTApi implements LLMApi {
 
     try {
       const chatPath = this.path(OpenaiPath.ChatPath);
+      console.log("after Proxy");
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
@@ -180,6 +181,7 @@ export class ChatGPTApi implements LLMApi {
 
           requestAnimationFrame(animateResponseText);
         }
+        console.log("b4 animateResponseText");
 
         // start animation
         animateResponseText();
@@ -192,6 +194,7 @@ export class ChatGPTApi implements LLMApi {
         };
 
         controller.signal.onabort = finish;
+        console.log("fetchEventSource");
 
         fetchEventSource(chatPath, {
           ...chatPayload,

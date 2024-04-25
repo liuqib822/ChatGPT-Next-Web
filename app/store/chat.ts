@@ -360,7 +360,7 @@ export const useChatStore = createPersistStore(
           api = new ClientApi(ModelProvider.GPT);
         }
 
-        // make request
+        // make request 这里发送chat请求
         api.llm.chat({
           messages: sendMessages,
           config: { ...modelConfig, stream: true },

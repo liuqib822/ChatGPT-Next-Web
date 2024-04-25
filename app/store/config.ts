@@ -34,7 +34,7 @@ export const DEFAULT_CONFIG = {
   theme: Theme.Auto as Theme,
   // tightBorder: !!getClientConfig()?.isApp,
   // 初始化就填满空间
-  tightBorder: false,
+  tightBorder: true,
   // 禁用预览气泡，优化性能
   sendPreviewBubble: false,
   enableAutoGenerateTitle: true,
@@ -50,10 +50,10 @@ export const DEFAULT_CONFIG = {
 
   modelConfig: {
     // model: "gpt-3.5-turbo" as ModelType,
-    model: "gpt-4" as ModelType,
+    model: "gpt-4-turbo" as ModelType,
     temperature: 0.5,
     top_p: 1,
-    max_tokens: 120000,
+    max_tokens: 1280000,
     presence_penalty: 0,
     frequency_penalty: 0,
     sendMemory: true,

@@ -181,7 +181,7 @@ export class ChatGPTApi implements LLMApi {
           requestAnimationFrame(animateResponseText);
         }
 
-        // start animaion
+        // start animation
         animateResponseText();
 
         const finish = () => {

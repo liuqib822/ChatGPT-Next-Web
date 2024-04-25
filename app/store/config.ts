@@ -53,6 +53,7 @@ export const DEFAULT_CONFIG = {
     model: "gpt-4-turbo" as ModelType,
     temperature: 0.5,
     top_p: 1,
+    // max_tokens Stays this way, dont change
     max_tokens: 4000,
     presence_penalty: 0,
     frequency_penalty: 0,

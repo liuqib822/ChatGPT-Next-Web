@@ -141,7 +141,6 @@ export class ChatGPTApi implements LLMApi {
 
     try {
       const chatPath = this.path(OpenaiPath.ChatPath);
-      console.log("after Proxy");
       const chatPayload = {
         method: "POST",
         body: JSON.stringify(requestPayload),
@@ -181,7 +180,6 @@ export class ChatGPTApi implements LLMApi {
 
           requestAnimationFrame(animateResponseText);
         }
-        console.log("b4 animateResponseText");
 
         // start animation
         animateResponseText();
@@ -199,6 +197,7 @@ export class ChatGPTApi implements LLMApi {
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
+            console.log("onopen");
             clearTimeout(requestTimeoutId);
             const contentType = res.headers.get("content-type");
             console.log(
@@ -239,6 +238,7 @@ export class ChatGPTApi implements LLMApi {
             }
           },
           onmessage(msg) {
+            console.log("onmessage");
             if (msg.data === "[DONE]" || finished) {
               return finish();
             }

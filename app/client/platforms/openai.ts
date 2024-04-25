@@ -197,7 +197,6 @@ export class ChatGPTApi implements LLMApi {
         fetchEventSource(chatPath, {
           ...chatPayload,
           async onopen(res) {
-            console.log("onopen");
             clearTimeout(requestTimeoutId);
             const contentType = res.headers.get("content-type");
             console.log(
@@ -238,7 +237,6 @@ export class ChatGPTApi implements LLMApi {
             }
           },
           onmessage(msg) {
-            console.log("onmessage");
             if (msg.data === "[DONE]" || finished) {
               return finish();
             }

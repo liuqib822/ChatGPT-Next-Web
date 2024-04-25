@@ -498,14 +498,14 @@ export function ChatActions(props: {
           icon={<SettingsIcon />}
         />
       )}
-
-      {showUploadImage && (
-        <ChatAction
-          onClick={props.uploadImage}
-          text={Locale.Chat.InputActions.UploadImage}
-          icon={props.uploading ? <LoadingButtonIcon /> : <ImageIcon />}
-        />
-      )}
+      禁用上传图片
+      {/*{showUploadImage && (*/}
+      {/*  <ChatAction*/}
+      {/*    onClick={props.uploadImage}*/}
+      {/*    text={Locale.Chat.InputActions.UploadImage}*/}
+      {/*    icon={props.uploading ? <LoadingButtonIcon /> : <ImageIcon />}*/}
+      {/*  />*/}
+      {/*)}*/}
       <ChatAction
         onClick={nextTheme}
         text={Locale.Chat.InputActions.Theme[theme]}
@@ -521,13 +521,12 @@ export function ChatActions(props: {
           </>
         }
       />
-
-      <ChatAction
-        onClick={props.showPromptHints}
-        text={Locale.Chat.InputActions.Prompt}
-        icon={<PromptIcon />}
-      />
-
+      {/*禁用快捷指令*/}
+      {/*<ChatAction*/}
+      {/*  onClick={props.showPromptHints}*/}
+      {/*  text={Locale.Chat.InputActions.Prompt}*/}
+      {/*  icon={<PromptIcon />}*/}
+      {/*/>*/}
       <ChatAction
         onClick={() => {
           navigate(Path.Masks);
@@ -535,7 +534,6 @@ export function ChatActions(props: {
         text={Locale.Chat.InputActions.Masks}
         icon={<MaskIcon />}
       />
-
       <ChatAction
         text={Locale.Chat.InputActions.Clear}
         icon={<BreakIcon />}
@@ -550,13 +548,12 @@ export function ChatActions(props: {
           });
         }}
       />
-
-      <ChatAction
-        onClick={() => setShowModelSelector(true)}
-        text={currentModel}
-        icon={<RobotIcon />}
-      />
-
+      {/*禁用模型选择*/}
+      {/*<ChatAction*/}
+      {/*  onClick={() => setShowModelSelector(true)}*/}
+      {/*  text={currentModel}*/}
+      {/*  icon={<RobotIcon />}*/}
+      {/*/>*/}
       {showModelSelector && (
         <Selector
           defaultSelectedValue={currentModel}
@@ -1102,11 +1099,13 @@ function _Chat() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   const handlePaste = useCallback(
     async (event: React.ClipboardEvent<HTMLTextAreaElement>) => {
       const currentModel = chatStore.currentSession().mask.modelConfig.model;
-      if(!isVisionModel(currentModel)){return;}
+      if (!isVisionModel(currentModel)) {
+        return;
+      }
       const items = (event.clipboardData || window.clipboardData).items;
       for (const item of items) {
         if (item.kind === "file" && item.type.startsWith("image/")) {

@@ -37,6 +37,7 @@ import AutoIcon from "../icons/auto.svg";
 import BottomIcon from "../icons/bottom.svg";
 import StopIcon from "../icons/pause.svg";
 import RobotIcon from "../icons/robot.svg";
+import UploadIcon from "../icons/upload.svg";
 
 import {
   ChatMessage,
@@ -97,6 +98,7 @@ import { ExportMessageModal } from "./exporter";
 import { getClientConfig } from "../config/client";
 import { useAllModels } from "../utils/hooks";
 import { MultimodalContent } from "../client/api";
+import { FileParseToast } from "./file-parse";
 
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
@@ -392,6 +394,7 @@ function useScrollToBottom(
   // for auto-scroll
 
   const [autoScroll, setAutoScroll] = useState(true);
+
   function scrollDomToBottom() {
     const dom = scrollRef.current;
     if (dom) {
@@ -418,6 +421,7 @@ function useScrollToBottom(
 }
 
 export function ChatActions(props: {
+  showFileUploadModal: () => void;
   uploadImage: () => void;
   setAttachImages: (images: string[]) => void;
   setUploading: (uploading: boolean) => void;
@@ -433,6 +437,7 @@ export function ChatActions(props: {
 
   // switch themes
   const theme = config.theme;
+
   function nextTheme() {
     const themes = [Theme.Auto, Theme.Light, Theme.Dark];
     const themeIndex = themes.indexOf(theme);
@@ -498,7 +503,7 @@ export function ChatActions(props: {
           icon={<SettingsIcon />}
         />
       )}
-      禁用上传图片
+      {/*禁用上传图片*/}
       {/*{showUploadImage && (*/}
       {/*  <ChatAction*/}
       {/*    onClick={props.uploadImage}*/}
@@ -506,6 +511,11 @@ export function ChatActions(props: {
       {/*    icon={props.uploading ? <LoadingButtonIcon /> : <ImageIcon />}*/}
       {/*  />*/}
       {/*)}*/}
+      <ChatAction
+        onClick={props.showFileUploadModal}
+        text={Locale.Chat.InputActions.FileUpload}
+        icon={<UploadIcon />}
+      />
       <ChatAction
         onClick={nextTheme}
         text={Locale.Chat.InputActions.Theme[theme]}
@@ -554,6 +564,7 @@ export function ChatActions(props: {
       {/*  text={currentModel}*/}
       {/*  icon={<RobotIcon />}*/}
       {/*/>*/}
+
       {showModelSelector && (
         <Selector
           defaultSelectedValue={currentModel}
@@ -980,6 +991,7 @@ function _Chat() {
   const [msgRenderIndex, _setMsgRenderIndex] = useState(
     Math.max(0, renderMessages.length - CHAT_PAGE_SIZE),
   );
+
   function setMsgRenderIndex(newIndex: number) {
     newIndex = Math.min(renderMessages.length - CHAT_PAGE_SIZE, newIndex);
     newIndex = Math.max(0, newIndex);
@@ -1015,6 +1027,7 @@ function _Chat() {
     setHitBottom(isHitBottom);
     setAutoScroll(isHitBottom);
   };
+
   function scrollToBottom() {
     setMsgRenderIndex(renderMessages.length - CHAT_PAGE_SIZE);
     scrollDomToBottom();
@@ -1188,6 +1201,9 @@ function _Chat() {
     setAttachImages(images);
   }
 
+  // control FileUpload modal
+  const [showFileUploadModal, setShowFileUploadModal] = useState(false);
+
   return (
     <div className={styles.chat} key={session.id}>
       <div className="window-header" data-tauri-drag-region>
@@ -1254,6 +1270,12 @@ function _Chat() {
           showToast={!hitBottom}
           showModal={showPromptModal}
           setShowModal={setShowPromptModal}
+        />
+
+        <FileParseToast
+          showModal={showFileUploadModal}
+          setShowModal={setShowFileUploadModal}
+          doSubmit={doSubmit}
         />
       </div>
 
@@ -1457,6 +1479,7 @@ function _Chat() {
           uploadImage={uploadImage}
           setAttachImages={setAttachImages}
           setUploading={setUploading}
+          showFileUploadModal={() => setShowFileUploadModal(true)}
           showPromptModal={() => setShowPromptModal(true)}
           scrollToBottom={scrollToBottom}
           hitBottom={hitBottom}

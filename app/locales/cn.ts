@@ -64,6 +64,48 @@ const cn = {
       Clear: "清除聊天",
       Settings: "对话设置",
       UploadImage: "上传图片",
+      FileUpload: "附件上传",
+    },
+    FileUploadActions: {
+      Title: "附件上传设置",
+      Reset: "重置",
+      ResetConfirm: "确认重置附件上传设置？",
+      SendConfirm: (count: number) => `确认要发送 ${count} 条对话？`,
+      Settings: {
+        General: {
+          ChunkSize: {
+            Title: "分块大小",
+            SubTitle:
+              "每个部分的字符数。如果您的文档太长，可以将其分成多个部分",
+          },
+          OverlapSize: {
+            Title: "重叠大小",
+            SubTitle: "每个部分之间重叠的字符数。用于使生成的文本更连贯",
+          },
+        },
+        Prompt: {
+          BasePrompt: {
+            Title: "基础提示",
+            SubTitle: "该提示将用于第一部分",
+          },
+          SinglePartPrompt: {
+            Title: "单部分提示",
+            SubTitle: "该提示将用于仅有一部分的文档",
+          },
+          MultiPartFirstPrompt: {
+            Title: "多部分首部提示",
+            SubTitle: "该提示将用于多部分文档的第一部分",
+          },
+          MultiPartConsecutivePrompts: {
+            Title: "多部分连续提示",
+            SubTitle: "该提示将用于多部分文档的每个部分",
+          },
+          LastPartPrompt: {
+            Title: "最后部分提示",
+            SubTitle: "该提示将用于多部分文档的最后一部分",
+          },
+        },
+      },
     },
     Rename: "重命名对话",
     Typing: "正在输入…",

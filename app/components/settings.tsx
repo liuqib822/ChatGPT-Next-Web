@@ -835,7 +835,7 @@ export function Settings() {
         {/*禁用云端同步功能*/}
         {/*<SyncItems />*/}
 
-        {/*禁用了选择面具功能*/}
+        {/*禁用了选择角色功能*/}
         {/*<List>*/}
         {/*  <ListItem*/}
         {/*    title={Locale.Settings.Mask.Splash.Title}*/}

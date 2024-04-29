@@ -4,7 +4,7 @@ import {
   saveToLocalStorage,
 } from "../helpers";
 import {
-  DEFAULT_CHUNCK_SIZE,
+  DEFAULT_CHUNK_SIZE,
   IMAGE_FILE_TYPES,
   ZIP_BLACKLIST,
   ZIP_IGNORE_EXTENSION,
@@ -58,7 +58,7 @@ const useFileUploader = (options: Options) => {
   const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string>("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [chunkSize, setChunkSize] = useState<number>(DEFAULT_CHUNCK_SIZE);
+  const [chunkSize, setChunkSize] = useState<number>(DEFAULT_CHUNK_SIZE);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isParseing, setIsParseing] = useState<boolean>(false);
   const [currentPart, setCurrentPart] = useState<number>(0);
@@ -189,7 +189,7 @@ const useFileUploader = (options: Options) => {
         );
         const { Document } = await import("langchain/document");
         const splitter = new RecursiveCharacterTextSplitter({
-          chunkSize: chunkSize ?? DEFAULT_CHUNCK_SIZE,
+          chunkSize: chunkSize ?? DEFAULT_CHUNK_SIZE,
           chunkOverlap: overlapSize ?? DEFAULT_OVERLAP_SIZE,
         });
         const docOutput = await splitter.splitDocuments([
@@ -463,7 +463,7 @@ ${text}`;
       saveToLocalStorage("chunkSize", String(parsedValue));
       setChunkSize(parsedValue);
     } catch (error) {
-      setChunkSize(DEFAULT_CHUNCK_SIZE);
+      setChunkSize(DEFAULT_CHUNK_SIZE);
     }
   }
 
@@ -504,7 +504,7 @@ ${text}`;
     removeItemFromLocalStorage("multipleFilesUpPrompt");
     onLastPartPromptChange(prompts.LAST_PART_PROMPT);
     removeItemFromLocalStorage("lastPartPrompt");
-    onChunkSizeChange(String(DEFAULT_CHUNCK_SIZE));
+    onChunkSizeChange(String(DEFAULT_CHUNK_SIZE));
   };
 
   useEffect(() => {
@@ -522,7 +522,7 @@ ${text}`;
 
   useEffect(() => {
     if (chunkSize < 1) {
-      setChunkSize(DEFAULT_CHUNCK_SIZE);
+      setChunkSize(DEFAULT_CHUNK_SIZE);
     }
   }, [chunkSize]);
 

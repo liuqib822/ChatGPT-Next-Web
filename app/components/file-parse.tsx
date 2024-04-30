@@ -216,7 +216,7 @@ export function FileParseToast(props: {
   };
   const {
     isSubmitting,
-    isParseing,
+    isParsing,
     setIsStopRequested,
     onUploadButtonClick,
     currentPart,
@@ -280,9 +280,9 @@ export function FileParseToast(props: {
                 icon={<SendWhiteIcon />}
                 bordered
                 text={Locale.Chat.Send}
-                disabled={isParseing}
+                disabled={isParsing}
                 onClick={() => {
-                  if (!isSubmitting && !isParseing) {
+                  if (!isSubmitting && !isParsing) {
                     try {
                       sendMessage();
                       onClose();
@@ -337,7 +337,7 @@ export function FileParseToast(props: {
                         setIsStopRequested(true);
                       }}
                     />
-                  ) : isParseing ? (
+                  ) : isParsing ? (
                     <IconButton icon={<LoadingIcon />} bordered />
                   ) : (
                     <IconButton

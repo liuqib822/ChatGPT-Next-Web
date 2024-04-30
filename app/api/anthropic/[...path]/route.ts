@@ -11,7 +11,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "../../auth";
 import { collectModelTable } from "@/app/utils/model";
 
-const ALLOWD_PATH = new Set([Anthropic.ChatPath, Anthropic.ChatPath1]);
+const ALLOWED_PATH = new Set([Anthropic.ChatPath, Anthropic.ChatPath1]);
 
 async function handle(
   req: NextRequest,
@@ -25,7 +25,7 @@ async function handle(
 
   const subpath = params.path.join("/");
 
-  if (!ALLOWD_PATH.has(subpath)) {
+  if (!ALLOWED_PATH.has(subpath)) {
     console.log("[Anthropic Route] forbidden path ", subpath);
     return NextResponse.json(
       {

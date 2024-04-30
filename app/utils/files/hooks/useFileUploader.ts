@@ -60,7 +60,7 @@ const useFileUploader = (options: Options) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [chunkSize, setChunkSize] = useState<number>(DEFAULT_CHUNK_SIZE);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [isParseing, setIsParseing] = useState<boolean>(false);
+  const [isParsing, setIsParsing] = useState<boolean>(false);
   const [currentPart, setCurrentPart] = useState<number>(0);
   const [totalParts, setTotalParts] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
@@ -176,7 +176,7 @@ const useFileUploader = (options: Options) => {
 
   async function file2ConversationWithPrompt(file: File) {
     getSettingsFromLocalStorage();
-    setIsParseing(true);
+    setIsParsing(true);
     setConversationWithPromptList([]);
     let fileContent = "";
     const handleFileContent = async (fileContent: string) => {
@@ -538,7 +538,7 @@ ${text}`;
   useEffect(() => {
     if (file) {
       file2ConversationWithPrompt(file).finally(() => {
-        setIsParseing(false);
+        setIsParsing(false);
       });
     }
   }, [file]);
@@ -547,7 +547,7 @@ ${text}`;
     file,
     fileName,
     isSubmitting,
-    isParseing,
+    isParsing,
     onFileChange,
     onUploadButtonClick,
     fileInputRef,

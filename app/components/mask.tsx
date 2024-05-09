@@ -535,17 +535,17 @@ export function MaskPage() {
                 </option>
               ))}
             </Select>
-
-            <IconButton
-              className={styles["mask-create"]}
-              icon={<AddIcon />}
-              text={Locale.Mask.Page.Create}
-              bordered
-              onClick={() => {
-                const createdMask = maskStore.create();
-                setEditingMaskId(createdMask.id);
-              }}
-            />
+            {/*禁用新建角色功能*/}
+            {/*<IconButton*/}
+            {/*  className={styles["mask-create"]}*/}
+            {/*  icon={<AddIcon />}*/}
+            {/*  text={Locale.Mask.Page.Create}*/}
+            {/*  bordered*/}
+            {/*  onClick={() => {*/}
+            {/*    const createdMask = maskStore.create();*/}
+            {/*    setEditingMaskId(createdMask.id);*/}
+            {/*  }}*/}
+            {/*/>*/}
           </div>
 
           <div>

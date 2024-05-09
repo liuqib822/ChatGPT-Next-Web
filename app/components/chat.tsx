@@ -511,11 +511,12 @@ export function ChatActions(props: {
       {/*    icon={props.uploading ? <LoadingButtonIcon /> : <ImageIcon />}*/}
       {/*  />*/}
       {/*)}*/}
-      <ChatAction
-        onClick={props.showFileUploadModal}
-        text={Locale.Chat.InputActions.FileUpload}
-        icon={<UploadIcon />}
-      />
+      {/*暂时禁用文件上传*/}
+      {/*<ChatAction*/}
+      {/*  onClick={props.showFileUploadModal}*/}
+      {/*  text={Locale.Chat.InputActions.FileUpload}*/}
+      {/*  icon={<UploadIcon />}*/}
+      {/*/>*/}
       <ChatAction
         onClick={nextTheme}
         text={Locale.Chat.InputActions.Theme[theme]}

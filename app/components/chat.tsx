@@ -665,6 +665,8 @@ function _Chat() {
   const session = chatStore.currentSession();
   const config = useAppConfig();
   const fontSize = config.fontSize;
+  // 新增控制每次发送token
+  const maxTokensPerSend = 30000;
 
   const [showExport, setShowExport] = useState(false);
 
@@ -757,6 +759,10 @@ function _Chat() {
 
   const doSubmit = (userInput: string) => {
     if (userInput.trim() === "") return;
+    if (userInput.length * 1.16466 > maxTokensPerSend) {
+      alert("当前输入过多，请减少输入的内容");
+      return;
+    }
     const matchCommand = chatCommands.match(userInput);
     if (matchCommand.matched) {
       setUserInput("");

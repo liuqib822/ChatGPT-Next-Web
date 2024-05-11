@@ -1,13 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
-// import { MessageBox, Message } from 'element-ui';
-// import store from '@/store';
-// import router from '@/router';
-// import { getToken } from '@/utils/auth';
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.BACKEND_BASE_API as string, // url = base url + request url
-  // baseURL: 'http://localhost:8000/api',
+  baseURL: "https://www.data-insight.com/api",
   withCredentials: true, // send cookies when cross-domain requests
   timeout: 300000, // request timeout
 });

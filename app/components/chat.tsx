@@ -100,6 +100,8 @@ import { useAllModels } from "../utils/hooks";
 import { MultimodalContent } from "../client/api";
 import { FileParseToast } from "./file-parse";
 
+import { updateLastUserInput } from "../api/datainsight/record";
+
 const Markdown = dynamic(async () => (await import("./markdown")).Markdown, {
   loading: () => <LoadingIcon />,
 });
@@ -757,12 +759,19 @@ function _Chat() {
     }
   };
 
-  const doSubmit = (userInput: string) => {
+  const doSubmit = async (userInput: string) => {
     if (userInput.trim() === "") return;
     if (userInput.length * 1.16466 > maxTokensPerSend) {
       showToast("当前输入过多，请减少输入的内容");
       return;
     }
+    try {
+      const data = await updateLastUserInput(userInput);
+      console.log("[try] + ", data);
+    } catch (error) {
+      console.error("[try] failed", error);
+    }
+
     const matchCommand = chatCommands.match(userInput);
     if (matchCommand.matched) {
       setUserInput("");

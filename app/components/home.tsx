@@ -140,7 +140,8 @@ function Screen() {
 
   // 捕获URL的cookie并存起来
   useEffect(() => {
-    console.log("[From Chatabc] location: " + location);
+    console.log("[From Chatabc] location: ");
+    console.log(location);
     const searchParams = new URLSearchParams(location.search);
     console.log("[From Chatabc] searchParams: " + searchParams);
     const paramValue = searchParams.get("cv");

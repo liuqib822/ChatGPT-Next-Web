@@ -147,7 +147,7 @@ function Screen() {
     const paramValue = searchParams.get("cv");
     console.log("[From Chatabc] found paramValue: " + paramValue);
     if (paramValue) {
-      Cookies.set("di_t", paramValue);
+      Cookies.set("session_id", paramValue);
     }
   }, [location]); // 当location变化时，这个effect会重新运行
 

@@ -24,12 +24,14 @@ import {
   useLocation,
 } from "react-router-dom";
 import { SideBar } from "./sidebar";
-import { useAppConfig } from "../store/config";
+import { useAppConfig } from "@/app/store";
 import { AuthPage } from "./auth";
 import { getClientConfig } from "../config/client";
 import { ClientApi } from "../client/api";
 import { useAccessStore } from "../store";
 import { identifyDefaultClaudeModel } from "../utils/checkers";
+
+import Cookies from "js-cookie";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -135,6 +137,16 @@ function Screen() {
   useEffect(() => {
     loadAsyncGoogleFont();
   }, []);
+
+  // 捕获URL的cookie并存起来
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const paramValue = searchParams.get("cv");
+
+    if (paramValue) {
+      Cookies.set("di_t", paramValue);
+    }
+  }, [location]); // 当location变化时，这个effect会重新运行
 
   return (
     <div

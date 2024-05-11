@@ -141,8 +141,9 @@ function Screen() {
   // 捕获URL的cookie并存起来
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
+    console.log("[From Chatabc] receiver url: " + searchParams);
     const paramValue = searchParams.get("cv");
-
+    console.log("[From Chatabc] found paramValue: " + paramValue);
     if (paramValue) {
       Cookies.set("di_t", paramValue);
     }

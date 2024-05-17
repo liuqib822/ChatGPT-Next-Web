@@ -55,11 +55,10 @@ service.interceptors.response.use(
     console.log("err " + error); // for debug
     if (error.response && error.response.status === 401) {
       // 弹出通知
-      message.error("登录超时，请重新登录");
-
-      // 重定向到登录页面
-      (window.top as Window).location.href =
-        "https://www.data-insight.com/data-platform/#/login";
+      message.error("登录超时，请重新登录", 3, () => {
+        (window.top as Window).location.href =
+          "https://www.data-insight.com/data-platform/#/login";
+      });
     }
     message.error(error.response?.data.message);
     // Message({

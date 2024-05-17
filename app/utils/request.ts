@@ -1,8 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from "axios";
+import { message } from "antd";
 
 // create an axios instance
 const service = axios.create({
   baseURL: "https://www.data-insight.com/api",
+  // baseURL: "http://localhost:8000/api",
   withCredentials: true, // send cookies when cross-domain requests
   timeout: 300000, // request timeout
 });
@@ -10,13 +12,7 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    // do something before request is sent
-    // if (store.getters.token) {
-    //     // 非简单请求不要带这个
-    //     config.headers['X-Token'] = getToken()
-    // }
-    // config.headers['Access-Control-Allow-Origin'] = '*'
-    // 这里可以打印一下检查请求内容
+    config.headers["Access-Control-Allow-Origin"] = "*";
     // console.log('request: ' + config)
     return config;
   },
@@ -33,12 +29,6 @@ service.interceptors.response.use(
     const res = response.data;
     // if the custom status is not 200, it is judged as an error.
     if (response.status !== 200 && response.status !== 204) {
-      // Message({
-      //     message: response.statusText || 'Error',
-      //     type: 'error',
-      //     duration: 5 * 1000
-      // });
-
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (
         response.status === 508 ||
@@ -64,16 +54,14 @@ service.interceptors.response.use(
   (error: AxiosError) => {
     console.log("err " + error); // for debug
     if (error.response && error.response.status === 401) {
-      // MessageBox.confirm('登录超时，请重新登陆', '会话超时', {
-      //     confirmButtonText: '确定',
-      //     cancelButtonText: '取消',
-      //     type: 'warning'
-      // }).then(() => {
-      //     store.dispatch('user/resetToken').then(() => {
-      //         router.push('/login');
-      //     });
-      // });
+      // 弹出通知
+      message.error("登录超时，请重新登录");
+
+      // 重定向到登录页面
+      (window.top as Window).location.href =
+        "https://www.data-insight.com/data-platform/#/login";
     }
+    message.error(error.response?.data.message);
     // Message({
     //     message: error.response?.data.message,
     //     type: 'error',

@@ -655,6 +655,7 @@ export const useChatStore = createPersistStore(
         const sessions = get().sessions;
         const index = get().currentSessionIndex;
         updater(sessions[index]);
+        // 传输回库
         set(() => ({ sessions }));
       },
 
